@@ -10,7 +10,7 @@ config :lifehope_attendance, LifehopeAttendance.Endpoint,
 
 config :logger, level: :info
 
-config :lifehope_attendance, HelloPhoenix.Repo,
+config :lifehope_attendance, LifehopeAttendance.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
