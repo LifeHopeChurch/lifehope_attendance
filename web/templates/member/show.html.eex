@@ -1,0 +1,28 @@
+<h2>Show member</h2>
+
+<ul>
+
+  <li>
+    <strong>First name:</strong>
+    <%= @member.first_name %>
+  </li>
+
+  <li>
+    <strong>Last name:</strong>
+    <%= @member.last_name %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @member.email %>
+  </li>
+
+  <li>
+    <strong>Notes:</strong>
+    <%= @member.notes %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: member_path(@conn, :edit, @member) %>
+<%= link "Back", to: member_path(@conn, :index) %>

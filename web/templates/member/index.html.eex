@@ -1,0 +1,27 @@
+<h2>Listing members</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for member <- @members do %>
+    <tr>
+      <td><%= member.first_name %></td>
+      <td><%= member.last_name %></td>
+
+      <td class="text-right">
+        <%= link "Edit", to: member_path(@conn, :edit, member), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: member_path(@conn, :delete, member), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New member", to: member_path(@conn, :new) %>
