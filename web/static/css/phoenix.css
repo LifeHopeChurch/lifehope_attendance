@@ -29,12 +29,22 @@ form.link, form.button {
 .logo {
   width: 519px;
   height: 71px;
-  display: inline-block;
-  margin-bottom: 1em;
-  background-image: url("/images/phoenix.png");
-  background-size: 519px 71px;
-}
+  /*margin-bottom: 1em;
+  background-image: url("/images/phoenix.png");*/
+  background-size: 73px 71px;
+  background-repeat: no-repeat;
+  padding-top: 14px;
+  padding-left: 90px;
 
+  background-image: url("/images/lh_logo_large.png");
+  font-family: 'Roboto', sans-serif;
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+nav ul {
+  margin-bottom: 0;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing {
