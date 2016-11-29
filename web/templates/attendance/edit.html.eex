@@ -1,0 +1,6 @@
+<h2>Edit attendance</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: attendance_path(@conn, :update, @attendance) %>
+
+<%= link "Back", to: attendance_path(@conn, :index) %>

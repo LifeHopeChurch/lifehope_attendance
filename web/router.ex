@@ -20,6 +20,7 @@ defmodule LifehopeAttendance.Router do
     resources "/members", MemberController
     resources "/events", EventController
     resources "/event_occurrences", EventOccurrenceController
+    resources "/attendances", AttendanceController
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,18 @@
+<h2>Show attendance</h2>
+
+<ul>
+
+  <li>
+    <strong>Event occurrence:</strong>
+    <%= @attendance.event_occurrence_id %>
+  </li>
+
+  <li>
+    <strong>Member:</strong>
+    <%= @attendance.member_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: attendance_path(@conn, :edit, @attendance) %>
+<%= link "Back", to: attendance_path(@conn, :index) %>

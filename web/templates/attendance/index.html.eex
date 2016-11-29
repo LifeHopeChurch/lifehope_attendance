@@ -1,0 +1,28 @@
+<h2>Listing attendances</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Event occurrence</th>
+      <th>Member</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for attendance <- @attendances do %>
+    <tr>
+      <td><%= attendance.event_occurrence_id %></td>
+      <td><%= attendance.member_id %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: attendance_path(@conn, :show, attendance), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: attendance_path(@conn, :edit, attendance), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: attendance_path(@conn, :delete, attendance), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New attendance", to: attendance_path(@conn, :new) %>
