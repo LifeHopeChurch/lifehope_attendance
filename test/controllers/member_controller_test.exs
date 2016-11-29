@@ -7,7 +7,7 @@ defmodule LifehopeAttendance.MemberControllerTest do
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, member_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing members"
+    assert html_response(conn, 200) =~ "Members"
   end
 
   test "renders form for new resources", %{conn: conn} do

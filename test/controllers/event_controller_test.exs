@@ -7,7 +7,7 @@ defmodule LifehopeAttendance.EventControllerTest do
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, event_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing events"
+    assert html_response(conn, 200) =~ "Events"
   end
 
   test "renders form for new resources", %{conn: conn} do
