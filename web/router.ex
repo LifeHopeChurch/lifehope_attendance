@@ -19,6 +19,7 @@ defmodule LifehopeAttendance.Router do
     get "/", PageController, :index
     resources "/members", MemberController
     resources "/events", EventController
+    resources "/event_occurrences", EventOccurrenceController
   end
 
   # Other scopes may use custom stacks.

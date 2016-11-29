@@ -1,0 +1,18 @@
+<h2>Show event occurrence</h2>
+
+<ul>
+
+  <li>
+    <strong>Starts at:</strong>
+    <%= @event_occurrence.starts_at %>
+  </li>
+
+  <li>
+    <strong>Event:</strong>
+    <%= @event_occurrence.event_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: event_occurrence_path(@conn, :edit, @event_occurrence) %>
+<%= link "Back", to: event_occurrence_path(@conn, :index) %>

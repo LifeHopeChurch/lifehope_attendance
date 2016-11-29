@@ -1,0 +1,28 @@
+<h2>Listing event occurrences</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Starts at</th>
+      <th>Event</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for event_occurrence <- @event_occurrences do %>
+    <tr>
+      <td><%= event_occurrence.starts_at %></td>
+      <td><%= event_occurrence.event_id %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: event_occurrence_path(@conn, :show, event_occurrence), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: event_occurrence_path(@conn, :edit, event_occurrence), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: event_occurrence_path(@conn, :delete, event_occurrence), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New event occurrence", to: event_occurrence_path(@conn, :new) %>
