@@ -1,6 +1,6 @@
 <h2>New event occurrence</h2>
 
-<%= render "form.html", changeset: @changeset, events: @events,
+<%= render "form.html", changeset: @changeset,
                         action: event_occurrence_path(@conn, :create) %>
 
 <%= link "Back", to: event_occurrence_path(@conn, :index) %>

@@ -12,8 +12,8 @@
   <tbody>
 <%= for event_occurrence <- @event_occurrences do %>
     <tr>
-      <td><%= event_occurrence.starts_at %></td>
-      <td><%= event_occurrence.event_id %></td>
+      <td><%= event_occurrence.starts_at |> display_datetime %></td>
+      <td><%= event_occurrence.event_id |> event_name %></td>
 
       <td class="text-right">
         <%= link "Show", to: event_occurrence_path(@conn, :show, event_occurrence), class: "btn btn-default btn-xs" %>

@@ -17,13 +17,14 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
+            <li><%= link "New", to: member_path(@conn, :index) %></li>
             <li><%= link "Members", to: member_path(@conn, :index) %></li>
             <li><%= link "Events", to: event_path(@conn, :index) %></li>
-            <li><%= link "Att", to: event_occurrence_path(@conn, :index) %></li>
             <li><%= link "Occ", to: event_occurrence_path(@conn, :index) %></li>
+            <li><%= link "Att", to: attendance_path(@conn, :index) %></li>
           </ul>
         </nav>
-        <span class="logo">Attendance Tracker</span>
+        <%= link "Attendance Tracker", to: page_path(@conn, :index), class: "logo" %>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

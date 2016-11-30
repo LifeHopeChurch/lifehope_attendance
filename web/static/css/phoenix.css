@@ -29,19 +29,21 @@ form.link, form.button {
 .logo {
   width: 350px;
   height: 71px;
-  /*margin-bottom: 1em;
-  background-image: url("/images/phoenix.png");*/
   background-size: 73px 71px;
   background-repeat: no-repeat;
   padding-top: 14px;
   padding-left: 90px;
-
   background-image: url("/images/lh_logo_large.png");
   font-family: 'Roboto', sans-serif;
   display: inline-block;
   margin-bottom: 12px;
   font-size: 28px;
 }
+
+a.logo {
+  text-decoration: none;
+}
+
 nav ul {
   margin-bottom: 0;
 }

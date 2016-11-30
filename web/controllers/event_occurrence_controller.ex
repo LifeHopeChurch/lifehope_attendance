@@ -10,15 +10,11 @@ defmodule LifehopeAttendance.EventOccurrenceController do
   end
 
   def new(conn, _params) do
-    events = Repo.all(Event)
-
-
     changeset = EventOccurrence.changeset(%EventOccurrence{starts_at: Ecto.DateTime.from_erl(:erlang.localtime)})
-    render(conn, "new.html", changeset: changeset, events: events)
+    render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"event_occurrence" => event_occurrence_params}) do
-    events = Repo.all(Event)
     changeset = EventOccurrence.changeset(%EventOccurrence{}, event_occurrence_params)
 
     case Repo.insert(changeset) do
@@ -27,7 +23,7 @@ defmodule LifehopeAttendance.EventOccurrenceController do
         |> put_flash(:info, "Event occurrence created successfully.")
         |> redirect(to: event_occurrence_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset, events: events)
+        render(conn, "new.html", changeset: changeset)
     end
   end
 
@@ -37,16 +33,12 @@ defmodule LifehopeAttendance.EventOccurrenceController do
   end
 
   def edit(conn, %{"id" => id}) do
-    events = Repo.all(Event)
-
     event_occurrence = Repo.get!(EventOccurrence, id)
     changeset = EventOccurrence.changeset(event_occurrence)
-    render(conn, "edit.html", event_occurrence: event_occurrence, changeset: changeset, events: events)
+    render(conn, "edit.html", event_occurrence: event_occurrence, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "event_occurrence" => event_occurrence_params}) do
-    events = Repo.all(Event)
-
     event_occurrence = Repo.get!(EventOccurrence, id)
     changeset = EventOccurrence.changeset(event_occurrence, event_occurrence_params)
 
@@ -56,7 +48,7 @@ defmodule LifehopeAttendance.EventOccurrenceController do
         |> put_flash(:info, "Event occurrence updated successfully.")
         |> redirect(to: event_occurrence_path(conn, :show, event_occurrence))
       {:error, changeset} ->
-        render(conn, "edit.html", event_occurrence: event_occurrence, changeset: changeset, events: events)
+        render(conn, "edit.html", event_occurrence: event_occurrence, changeset: changeset)
     end
   end
 
