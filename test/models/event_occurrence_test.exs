@@ -3,7 +3,7 @@ defmodule LifehopeAttendance.EventOccurrenceTest do
 
   alias LifehopeAttendance.EventOccurrence
 
-  @valid_attrs %{starts_at: %{day: 17, hour: 14, min: 0, month: 4, sec: 0, year: 2010}}
+  @valid_attrs %{starts_at: %{day: 17, hour: 14, min: 0, month: 4, sec: 0, year: 2010}, event_id: 1}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

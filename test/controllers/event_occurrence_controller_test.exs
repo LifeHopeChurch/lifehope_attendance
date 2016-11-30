@@ -1,8 +1,9 @@
 defmodule LifehopeAttendance.EventOccurrenceControllerTest do
   use LifehopeAttendance.ConnCase
+  alias LifehopeAttendance.Event
 
   alias LifehopeAttendance.EventOccurrence
-  @valid_attrs %{starts_at: %{day: 17, hour: 14, min: 0, month: 4, sec: 0, year: 2010}}
+  @valid_attrs %{starts_at: %{day: 17, hour: 14, min: 0, month: 4, sec: 0, year: 2010}, event_id: 1}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
@@ -16,9 +17,12 @@ defmodule LifehopeAttendance.EventOccurrenceControllerTest do
   end
 
   test "creates resource and redirects when data is valid", %{conn: conn} do
-    conn = post conn, event_occurrence_path(conn, :create), event_occurrence: @valid_attrs
+    {:ok, event} = Event.changeset(%Event{}, %{ name: "Test event" }) |> Repo.insert
+    valid_attrs = Map.merge(@valid_attrs, %{event_id: event.id})
+
+    conn = post conn, event_occurrence_path(conn, :create), event_occurrence: valid_attrs
     assert redirected_to(conn) == event_occurrence_path(conn, :index)
-    assert Repo.get_by(EventOccurrence, @valid_attrs)
+    assert Repo.get_by(EventOccurrence, valid_attrs)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
@@ -45,13 +49,19 @@ defmodule LifehopeAttendance.EventOccurrenceControllerTest do
   end
 
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    event_occurrence = Repo.insert! %EventOccurrence{}
-    conn = put conn, event_occurrence_path(conn, :update, event_occurrence), event_occurrence: @valid_attrs
+    {:ok, event} = Event.changeset(%Event{}, %{ name: "Test event" }) |> Repo.insert
+    valid_attrs = Map.merge(@valid_attrs, %{event_id: event.id})
+
+    event_occurrence = Repo.insert! %EventOccurrence{event_id: event.id}
+    conn = put conn, event_occurrence_path(conn, :update, event_occurrence), event_occurrence: valid_attrs
     assert redirected_to(conn) == event_occurrence_path(conn, :show, event_occurrence)
-    assert Repo.get_by(EventOccurrence, @valid_attrs)
+    assert Repo.get_by(EventOccurrence, valid_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
+    {:ok, event} = Event.changeset(%Event{}, %{ name: "Test event" }) |> Repo.insert
+    valid_attrs = Map.merge(@valid_attrs, %{event_id: event.id})
+
     event_occurrence = Repo.insert! %EventOccurrence{}
     conn = put conn, event_occurrence_path(conn, :update, event_occurrence), event_occurrence: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit event occurrence"

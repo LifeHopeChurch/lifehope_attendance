@@ -3,7 +3,7 @@ defmodule LifehopeAttendance.AttendanceTest do
 
   alias LifehopeAttendance.Attendance
 
-  @valid_attrs %{}
+  @valid_attrs %{event_occurrence_id: 1, member_id: 1}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

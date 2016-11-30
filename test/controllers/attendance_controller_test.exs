@@ -1,8 +1,12 @@
 defmodule LifehopeAttendance.AttendanceControllerTest do
   use LifehopeAttendance.ConnCase
 
+  alias LifehopeAttendance.Event
+  alias LifehopeAttendance.EventOccurrence
+  alias LifehopeAttendance.Member
+
   alias LifehopeAttendance.Attendance
-  @valid_attrs %{}
+  @valid_attrs %{event_occurrence_id: 1, member_id: 1}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
@@ -16,9 +20,14 @@ defmodule LifehopeAttendance.AttendanceControllerTest do
   end
 
   test "creates resource and redirects when data is valid", %{conn: conn} do
-    conn = post conn, attendance_path(conn, :create), attendance: @valid_attrs
+    event = Repo.insert! %Event{ name: "Test event" }
+    event_occurrence = Repo.insert! %EventOccurrence{event_id: event.id}
+    member = Repo.insert! %Member{first_name: "Joe", last_name: "Tester"}
+    valid_attrs = Map.merge(@valid_attrs, %{event_occurrence_id: event_occurrence.id, member_id: member.id})
+
+    conn = post conn, attendance_path(conn, :create), attendance: valid_attrs
     assert redirected_to(conn) == attendance_path(conn, :index)
-    assert Repo.get_by(Attendance, @valid_attrs)
+    assert Repo.get_by(Attendance, valid_attrs)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
@@ -45,10 +54,15 @@ defmodule LifehopeAttendance.AttendanceControllerTest do
   end
 
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
+    event = Repo.insert! %Event{ name: "Test event" }
+    event_occurrence = Repo.insert! %EventOccurrence{event_id: event.id}
+    member = Repo.insert! %Member{first_name: "Joe", last_name: "Tester"}
+    valid_attrs = Map.merge(@valid_attrs, %{event_occurrence_id: event_occurrence.id, member_id: member.id})
+
     attendance = Repo.insert! %Attendance{}
-    conn = put conn, attendance_path(conn, :update, attendance), attendance: @valid_attrs
+    conn = put conn, attendance_path(conn, :update, attendance), attendance: valid_attrs
     assert redirected_to(conn) == attendance_path(conn, :show, attendance)
-    assert Repo.get_by(Attendance, @valid_attrs)
+    assert Repo.get_by(Attendance, valid_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do

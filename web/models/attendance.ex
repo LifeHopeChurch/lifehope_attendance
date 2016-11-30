@@ -13,7 +13,9 @@ defmodule LifehopeAttendance.Attendance do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [])
-    |> validate_required([])
-  end
+    |> cast(params, [:event_occurrence_id])
+    |> validate_required([:event_occurrence_id])
+    |> cast(params, [:member_id])
+    |> validate_required([:member_id])
+end
 end
