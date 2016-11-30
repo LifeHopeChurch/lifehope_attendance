@@ -19,7 +19,8 @@
           <ul class="nav nav-pills pull-right">
             <li><%= link "Members", to: member_path(@conn, :index) %></li>
             <li><%= link "Events", to: event_path(@conn, :index) %></li>
-            <li><%= link "Occurrences", to: event_occurrence_path(@conn, :index) %></li>
+            <li><%= link "Att", to: event_occurrence_path(@conn, :index) %></li>
+            <li><%= link "Occ", to: event_occurrence_path(@conn, :index) %></li>
           </ul>
         </nav>
         <span class="logo">Attendance Tracker</span>

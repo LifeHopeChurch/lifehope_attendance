@@ -15,7 +15,7 @@ defmodule LifehopeAttendance.Member do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:first_name, :last_name, :email, :notes])
-    |> validate_required([:first_name, :last_name, :email, :notes])
+    |> cast(params, [:first_name, :last_name])
+    |> validate_required([:first_name, :last_name])
   end
 end

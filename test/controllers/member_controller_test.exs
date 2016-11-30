@@ -2,7 +2,7 @@ defmodule LifehopeAttendance.MemberControllerTest do
   use LifehopeAttendance.ConnCase
 
   alias LifehopeAttendance.Member
-  @valid_attrs %{email: "some content", first_name: "some content", last_name: "some content", notes: "some content"}
+  @valid_attrs %{first_name: "some content", last_name: "some content"}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
