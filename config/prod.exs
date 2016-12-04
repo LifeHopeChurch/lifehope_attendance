@@ -5,7 +5,7 @@ config :lifehope_attendance,
   admin_auth:
     [
       username: "admin",
-      password: System.get_env("ADMIN_AUTH_PW"),
+      password: System.get_env("ADMIN_AUTH_PW") || "admin",
       realm: "Admin Area"
     ]
 
