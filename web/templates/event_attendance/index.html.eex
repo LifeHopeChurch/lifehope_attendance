@@ -1,3 +1,6 @@
+
+<%= link "New member", to: member_path(@conn, :new), class: "btn btn-success" %>
+
 <table class="table">
   <thead>
     <tr>
