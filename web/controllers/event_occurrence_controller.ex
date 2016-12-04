@@ -5,7 +5,10 @@ defmodule LifehopeAttendance.EventOccurrenceController do
   alias LifehopeAttendance.Event
 
   def index(conn, _params) do
-    event_occurrences = Repo.all(EventOccurrence)
+    query = from a in EventOccurrence,
+              order_by: [desc: :starts_at]
+    event_occurrences = Repo.all(query)
+
     render(conn, "index.html", event_occurrences: event_occurrences)
   end
 
@@ -18,10 +21,11 @@ defmodule LifehopeAttendance.EventOccurrenceController do
     changeset = EventOccurrence.changeset(%EventOccurrence{}, event_occurrence_params)
 
     case Repo.insert(changeset) do
-      {:ok, _event_occurrence} ->
+      {:ok, event_occurrence} ->
         conn
         |> put_flash(:info, "Event occurrence created successfully.")
-        |> redirect(to: event_occurrence_path(conn, :index))
+        |> redirect(to: event_occurrence_event_attendance_path(conn, :index, event_occurrence))
+        # |> redirect(to: event_occurrence_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Present or Absent?</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for member <- members do %>
+    <tr>
+      <td>
+        <%= member |> member_name %>
+      </td>
+      <td>
+        <%= if attending?(@event_occurrence, member) do %>
+          <%= link "Present", to: event_occurrence_event_attendance_path(@conn, :delete, @event_occurrence, attendance(@event_occurrence, member)), method: :delete, class: "btn btn-success" %>
+        <% else %>
+          <%= link "Absent", to: event_occurrence_event_attendance_path(@conn, :create, @event_occurrence, %{member_id: member.id}), method: :post, class: "btn btn-default" %>
+        <% end %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

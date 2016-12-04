@@ -16,10 +16,12 @@ defmodule LifehopeAttendance.Router do
   scope "/", LifehopeAttendance do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", EventOccurrenceController, :index
     resources "/members", MemberController
     resources "/events", EventController
-    resources "/event_occurrences", EventOccurrenceController
+    resources "/event_occurrences", EventOccurrenceController do
+      resources "/attendance", EventAttendanceController
+    end
     resources "/attendances", AttendanceController
     resources "/record_attendances", RecordAttendanceController
   end

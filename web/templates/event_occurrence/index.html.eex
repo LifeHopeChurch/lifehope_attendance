@@ -1,5 +1,7 @@
 <h2>Listing event occurrences</h2>
 
+<%= link "New Event", to: event_occurrence_path(@conn, :new), class: "btn btn-success" %>
+
 <table class="table">
   <thead>
     <tr>
@@ -16,13 +18,11 @@
       <td><%= event_occurrence.event_id |> event_name %></td>
 
       <td class="text-right">
-        <%= link "Show", to: event_occurrence_path(@conn, :show, event_occurrence), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: event_occurrence_path(@conn, :edit, event_occurrence), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: event_occurrence_path(@conn, :delete, event_occurrence), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link "Attendance", to: event_occurrence_event_attendance_path(@conn, :index, event_occurrence), class: "btn btn-success" %>
+        <%= link "Edit", to: event_occurrence_path(@conn, :edit, event_occurrence), class: "btn btn-default" %>
+        <!-- <%= link "Delete", to: event_occurrence_path(@conn, :delete, event_occurrence), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %> -->
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
-
-<%= link "New event occurrence", to: event_occurrence_path(@conn, :new) %>
