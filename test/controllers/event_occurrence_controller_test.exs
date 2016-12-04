@@ -8,7 +8,7 @@ defmodule LifehopeAttendance.EventOccurrenceControllerTest do
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, event_occurrence_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing event occurrences"
+    assert html_response(conn, 200) =~ "Sessions"
   end
 
   test "renders form for new resources", %{conn: conn} do
@@ -21,8 +21,9 @@ defmodule LifehopeAttendance.EventOccurrenceControllerTest do
     valid_attrs = Map.merge(@valid_attrs, %{event_id: event.id})
 
     conn = post conn, event_occurrence_path(conn, :create), event_occurrence: valid_attrs
-    assert redirected_to(conn) == event_occurrence_path(conn, :index)
-    assert Repo.get_by(EventOccurrence, valid_attrs)
+    event_occurrence = Repo.get_by(EventOccurrence, valid_attrs)
+    assert event_occurrence
+    assert redirected_to(conn) == event_occurrence_event_attendance_path(conn, :index, event_occurrence)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do

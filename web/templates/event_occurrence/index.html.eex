@@ -1,4 +1,4 @@
-<h2>Listing event occurrences</h2>
+<h2>Sessions</h2>
 
 <%= link "New Event", to: event_occurrence_path(@conn, :new), class: "btn btn-success" %>
 
