@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/lifehopechurch/lifehope_attendance.svg?branch=master)](https://travis-ci.org/lifehopechurch/lifehope_attendance)
 
+Application is running [here](https://lifehope-attendance.herokuapp.com/)
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
