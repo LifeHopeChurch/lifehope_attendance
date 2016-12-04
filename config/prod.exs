@@ -1,5 +1,14 @@
 use Mix.Config
 
+config :lifehope_attendance,
+  ecto_repos: [LifehopeAttendance.Repo],
+  admin_auth:
+    [
+      username: "admin",
+      password: System.get_env("ADMIN_AUTH_PW"),
+      realm: "Admin Area"
+    ]
+
 config :lifehope_attendance, LifehopeAttendance.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "lifehope-attendance.herokuapp.com", port: 443],

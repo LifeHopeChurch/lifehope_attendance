@@ -1,5 +1,6 @@
 defmodule LifehopeAttendance.EventAttendanceController do
   use LifehopeAttendance.Web, :controller
+  plug BasicAuth, use_config: {:lifehope_attendance, :admin_auth}
 
   alias LifehopeAttendance.Attendance
   alias LifehopeAttendance.EventOccurrence
