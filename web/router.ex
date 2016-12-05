@@ -21,6 +21,8 @@ defmodule LifehopeAttendance.Router do
     resources "/events", EventController
     resources "/event_occurrences", EventOccurrenceController do
       resources "/attendance", EventAttendanceController
+      put "/attendance", EventAttendanceController, :visitor
+
     end
     resources "/attendances", AttendanceController
     resources "/record_attendances", RecordAttendanceController

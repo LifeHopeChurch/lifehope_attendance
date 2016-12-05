@@ -3,6 +3,7 @@ defmodule LifehopeAttendance.EventOccurrence do
 
   schema "event_occurrences" do
     field :starts_at, Ecto.DateTime
+    field :visitor_count, :integer, default: 0
     belongs_to :event, LifehopeAttendance.Event
 
     timestamps()
@@ -17,5 +18,6 @@ defmodule LifehopeAttendance.EventOccurrence do
     |> validate_required([:starts_at])
     |> cast(params, [:event_id])
     |> validate_required([:event_id])
+    |> cast(params, [:visitor_count])
   end
 end

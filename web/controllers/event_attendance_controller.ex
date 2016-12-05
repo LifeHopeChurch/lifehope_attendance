@@ -40,4 +40,38 @@ defmodule LifehopeAttendance.EventAttendanceController do
     |> redirect(to: event_occurrence_event_attendance_path(conn, :index, event_occurrence))
   end
 
+  def visitor(conn, %{"event_occurrence_id" => event_occurrence_id, "for" => "add"}) do
+    event_occurrence = Repo.get!(EventOccurrence, event_occurrence_id)
+    changeset = EventOccurrence.changeset(event_occurrence, %{visitor_count: event_occurrence.visitor_count + 1 })
+
+    case Repo.update(changeset) do
+      {:ok, event_occurrence} ->
+        conn
+        # |> put_flash(:info, "Visitor count increased")
+        |> redirect(to: event_occurrence_event_attendance_path(conn, :index, event_occurrence))
+      {:error, changeset} ->
+        IO.puts changeset
+        conn
+        |> put_flash(:info, "Unable to add visitor.")
+        |> redirect(to: event_occurrence_event_attendance_path(conn, :index, event_occurrence))
+    end
+  end
+
+  def visitor(conn, %{"event_occurrence_id" => event_occurrence_id, "for" => "subtract"}) do
+    event_occurrence = Repo.get!(EventOccurrence, event_occurrence_id)
+    changeset = EventOccurrence.changeset(event_occurrence, %{visitor_count: event_occurrence.visitor_count - 1 })
+
+    case Repo.update(changeset) do
+      {:ok, event_occurrence} ->
+
+        conn
+        # |> put_flash(:info, "Visitor count increased")
+        |> redirect(to: event_occurrence_event_attendance_path(conn, :index, event_occurrence))
+      {:error, changeset} ->
+        IO.puts changeset
+        conn
+        |> put_flash(:info, "Unable to add visitor.")
+        |> redirect(to: event_occurrence_event_attendance_path(conn, :index, event_occurrence))
+    end
+  end
 end

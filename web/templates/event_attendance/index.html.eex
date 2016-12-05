@@ -1,6 +1,12 @@
 
 <h2><%= event(@event_occurrence).name %> - <%= @event_occurrence.starts_at |> display_datetime %></h2>
 <%= link "New member", to: member_path(@conn, :new), class: "btn btn-success" %>
+
+<h3> Attending: <%= @attendees |> Enum.count %> </h3>
+<h3> Visitors: <%=@event_occurrence.visitor_count || 0 %> </h3>
+<%= link "+", to: event_occurrence_event_attendance_path(@conn, :visitor, @event_occurrence, %{for: "add"}), method: :put, class: "btn btn-default" %>
+<%= link "-", to: event_occurrence_event_attendance_path(@conn, :visitor, @event_occurrence, %{for: "subtract"}), method: :put, class: "btn btn-default" %>
+
 <table class="table">
   <thead>
     <tr>
