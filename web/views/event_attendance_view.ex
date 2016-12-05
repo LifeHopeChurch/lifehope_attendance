@@ -22,7 +22,8 @@ defmodule LifehopeAttendance.EventAttendanceView do
   end
   def attendance(event_occurrence, member) do
     query = from a in Attendance,
-            where: a.member_id == ^member.id and a.event_occurrence_id == ^event_occurrence.id
-    Repo.one(query, limit: 1)
+            where: a.member_id == ^member.id
+               and a.event_occurrence_id == ^event_occurrence.id
+    Repo.all(query) |> List.first
   end
 end
