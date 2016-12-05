@@ -13,11 +13,6 @@ defmodule LifehopeAttendance.EventAttendanceController do
     render(conn, "index.html", event_occurrence: event_occurrence, attendees: attendees)
   end
 
-  def update(conn, %{"event_occurrence_id" => event_occurrence_id, "attendance" => attendance_params}) do
-    event_occurrence = Repo.get!(EventOccurrence, event_occurrence_id)
-
-  end
-
   def create(conn, %{"event_occurrence_id" => event_occurrence_id, "member_id" => member_id}) do
     event_occurrence = Repo.get!(EventOccurrence, event_occurrence_id)
     changeset = Attendance.changeset(%Attendance{}, %{"event_occurrence_id" => event_occurrence_id, "member_id" => member_id})

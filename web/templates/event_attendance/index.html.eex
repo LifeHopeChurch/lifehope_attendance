@@ -1,6 +1,6 @@
 
+<h2><%= event(@event_occurrence).name %> - <%= @event_occurrence.starts_at |> display_datetime %></h2>
 <%= link "New member", to: member_path(@conn, :new), class: "btn btn-success" %>
-
 <table class="table">
   <thead>
     <tr>

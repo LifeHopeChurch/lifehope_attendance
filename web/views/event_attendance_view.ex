@@ -9,6 +9,14 @@ defmodule LifehopeAttendance.EventAttendanceView do
   alias LifehopeAttendance.Repo
   alias LifehopeAttendance.Attendance
 
+  def event(event_occurrence) do
+    Repo.get!(Event, event_occurrence.event_id)
+  end
+
+  def display_datetime(datetime) do
+    "#{datetime.month}/#{datetime.day}/#{datetime.year} #{datetime.hour |> rem(12)}:#{datetime.min}  "
+  end
+
   def members do
     Repo.all(Member)
   end
@@ -20,6 +28,7 @@ defmodule LifehopeAttendance.EventAttendanceView do
   def attending?(event_occurrence, member) do
     attendance(event_occurrence, member)
   end
+
   def attendance(event_occurrence, member) do
     query = from a in Attendance,
             where: a.member_id == ^member.id
