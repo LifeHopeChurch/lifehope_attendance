@@ -42,7 +42,7 @@ defmodule LifehopeAttendance.EventAttendanceController do
 
   def visitor(conn, %{"event_occurrence_id" => event_occurrence_id, "for" => "add"}) do
     event_occurrence = Repo.get!(EventOccurrence, event_occurrence_id)
-    changeset = EventOccurrence.changeset(event_occurrence, %{visitor_count: event_occurrence.visitor_count + 1 })
+    changeset = EventOccurrence.changeset(event_occurrence, %{visitor_count: (event_occurrence.visitor_count || 0) + 1 })
 
     case Repo.update(changeset) do
       {:ok, event_occurrence} ->
@@ -59,7 +59,7 @@ defmodule LifehopeAttendance.EventAttendanceController do
 
   def visitor(conn, %{"event_occurrence_id" => event_occurrence_id, "for" => "subtract"}) do
     event_occurrence = Repo.get!(EventOccurrence, event_occurrence_id)
-    changeset = EventOccurrence.changeset(event_occurrence, %{visitor_count: event_occurrence.visitor_count - 1 })
+    changeset = EventOccurrence.changeset(event_occurrence, %{visitor_count: (event_occurrence.visitor_count || 0) - 1 })
 
     case Repo.update(changeset) do
       {:ok, event_occurrence} ->
