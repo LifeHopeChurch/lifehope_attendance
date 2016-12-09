@@ -5,7 +5,8 @@ defmodule LifehopeAttendance.MemberController do
   alias LifehopeAttendance.Member
 
   def index(conn, _params) do
-    members = Repo.all(Member)
+    query = from Member, order_by: [asc: :last_name, asc: :first_name]
+    members = Repo.all(query)
     render(conn, "index.html", members: members)
   end
 

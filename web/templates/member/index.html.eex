@@ -3,8 +3,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>First name</th>
       <th>Last name</th>
+      <th>First name</th>
 
       <th></th>
     </tr>
@@ -12,8 +12,8 @@
   <tbody>
 <%= for member <- @members do %>
     <tr>
-      <td><%= member.first_name %></td>
       <td><%= member.last_name %></td>
+      <td><%= member.first_name %></td>
 
       <td class="text-right">
         <%= link "Edit", to: member_path(@conn, :edit, member), class: "btn btn-default btn-xs" %>
