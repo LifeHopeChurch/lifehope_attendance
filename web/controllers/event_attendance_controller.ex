@@ -6,11 +6,9 @@ defmodule LifehopeAttendance.EventAttendanceController do
   alias LifehopeAttendance.EventOccurrence
 
   def index(conn, %{"event_occurrence_id" => event_occurrence_id}) do
-    event_occurrence = Repo.get!(EventOccurrence, event_occurrence_id)
-    attendees = Repo.all(from d in Attendance, where: d.event_occurrence_id == ^event_occurrence_id)
+    event_occurrence = LifehopeAttendance.AttendanceTracker.tracking_data_for(event_occurrence_id)
 
-
-    render(conn, "index.html", event_occurrence: event_occurrence, attendees: attendees)
+    render(conn, "index.html", event_occurrence: event_occurrence)
   end
 
   def create(conn, %{"event_occurrence_id" => event_occurrence_id, "member_id" => member_id}) do

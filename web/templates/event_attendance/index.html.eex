@@ -2,7 +2,7 @@
 <h2><%= event(@event_occurrence).name %> - <%= @event_occurrence.starts_at |> display_datetime %></h2>
 <%= link "New member", to: member_path(@conn, :new), class: "btn btn-success" %>
 
-<h3> Attending: <%= @attendees |> Enum.count %> </h3>
+<h3> Attending: <%= @event_occurrence.attendees |> Enum.count %> </h3>
 <h3> Visitors: <%=@event_occurrence.visitor_count || 0 %> </h3>
 <%= link "+", to: event_occurrence_event_attendance_path(@conn, :visitor, @event_occurrence, %{for: "add"}), method: :put, class: "btn btn-default" %>
 <%= link "-", to: event_occurrence_event_attendance_path(@conn, :visitor, @event_occurrence, %{for: "subtract"}), method: :put, class: "btn btn-default" %>
@@ -15,16 +15,16 @@
     </tr>
   </thead>
   <tbody>
-<%= for member <- members do %>
+<%= for member <- @event_occurrence.members do %>
     <tr>
       <td>
-        <%= member |> member_name %>
+        <%= member.name %>
       </td>
       <td>
-        <%= if attending?(@event_occurrence, member) do %>
-          <%= link "Present", to: event_occurrence_event_attendance_path(@conn, :delete, @event_occurrence, attendance(@event_occurrence, member)), method: :delete, class: "btn btn-success" %>
-        <% else %>
+        <%= if member.attendee == nil do %>
           <%= link "Absent", to: event_occurrence_event_attendance_path(@conn, :create, @event_occurrence, %{member_id: member.id}), method: :post, class: "btn btn-default" %>
+        <% else %>
+          <%= link "Present", to: event_occurrence_event_attendance_path(@conn, :delete, @event_occurrence, member.attendee), method: :delete, class: "btn btn-success" %>
         <% end %>
       </td>
     </tr>
