@@ -1,13 +1,7 @@
 use Mix.Config
 
 config :lifehope_attendance,
-  ecto_repos: [LifehopeAttendance.Repo],
-  admin_auth:
-    [
-      username: "admin",
-      password: System.get_env("ADMIN_AUTH_PW") || "admin",
-      realm: "Admin Area"
-    ]
+  ecto_repos: [LifehopeAttendance.Repo]
 
 config :lifehope_attendance, LifehopeAttendance.Endpoint,
   http: [port: {:system, "PORT"}],

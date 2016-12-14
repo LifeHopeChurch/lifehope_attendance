@@ -7,13 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :lifehope_attendance,
-  ecto_repos: [LifehopeAttendance.Repo],
-  admin_auth:
-    [
-      username: "admin",
-      password: "admin",
-      realm: "Admin Area"
-    ]
+  ecto_repos: [LifehopeAttendance.Repo]
 
 # Configures the endpoint
 config :lifehope_attendance, LifehopeAttendance.Endpoint,
