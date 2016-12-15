@@ -20,6 +20,11 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 heroku run "POOL_SIZE=2 mix ecto.migrate"
 ```
 
+### install coherence
+```
+mix coherence.install --default --trackable --confirmable --invitable --rememberable --controllers
+```
+
 ## Learn more
 
   * Official website: http://www.phoenixframework.org/

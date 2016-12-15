@@ -2,8 +2,14 @@ defmodule LifehopeAttendance.MemberControllerTest do
   use LifehopeAttendance.ConnCase
 
   alias LifehopeAttendance.Member
+  alias LifehopeAttendance.User
   @valid_attrs %{first_name: "some content", last_name: "some content"}
   @invalid_attrs %{}
+
+  setup %{conn: conn} do
+    user = %User{name: "test", email: "test@example.com", id: 1}
+    {:ok, conn: assign(conn, :current_user, user), user: user}
+  end
 
   test "lists all entries on index", %{conn: conn} do
     conn = conn

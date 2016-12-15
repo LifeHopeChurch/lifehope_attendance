@@ -4,10 +4,16 @@ defmodule LifehopeAttendance.AttendanceControllerTest do
   alias LifehopeAttendance.Event
   alias LifehopeAttendance.EventOccurrence
   alias LifehopeAttendance.Member
-
   alias LifehopeAttendance.Attendance
+  alias LifehopeAttendance.User
+
   @valid_attrs %{event_occurrence_id: 1, member_id: 1}
   @invalid_attrs %{}
+
+  setup %{conn: conn} do
+    user = %User{name: "test", email: "test@example.com", id: 1}
+    {:ok, conn: assign(conn, :current_user, user), user: user}
+  end
 
   test "lists all entries on index", %{conn: conn} do
     conn = conn

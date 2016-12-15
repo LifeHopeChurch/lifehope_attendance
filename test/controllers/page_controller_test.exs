@@ -1,9 +1,11 @@
 defmodule LifehopeAttendance.PageControllerTest do
   use LifehopeAttendance.ConnCase
 
-  defp using_basic_auth(conn, username, password) do
-    header_content = "Basic " <> Base.encode64("#{username}:#{password}")
-    conn |> put_req_header("authorization", header_content)
+  alias LifehopeAttendance.User
+
+  setup %{conn: conn} do
+    user = %User{name: "test", email: "test@example.com", id: 1}
+    {:ok, conn: assign(conn, :current_user, user), user: user}
   end
 
   test "GET /", %{conn: conn} do

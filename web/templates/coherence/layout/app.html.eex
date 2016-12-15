@@ -7,8 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Life Hope Attendance Tracker</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <title>Hello Admin1!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -16,17 +15,8 @@
     <div class="container">
       <header class="header">
         <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><%= link "Members", to: member_path(@conn, :index) %></li>
-            <li><%= link "Event Types", to: event_path(@conn, :index) %></li>
-            <%= if Coherence.current_user(@conn) do %>
-              <li><%= link "Logout", to: session_path(@conn, :delete), method: :delete, class: "nav-btn" %></li>
-            <%= else %>
-              <li><%= link "Login", to: session_path(@conn, :new), class: "nav-btn" %></li>
-            <%= end %>
-          </ul>
         </nav>
-        <%= link "Attendance Tracker", to: event_occurrence_path(@conn, :index), class: "logo" %>
+        <span class="logo"></span>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
