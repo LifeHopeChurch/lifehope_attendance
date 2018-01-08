@@ -19,7 +19,7 @@ defmodule LifehopeAttendance.Mixfile do
   def application do
     [mod: {LifehopeAttendance, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :faker_elixir_octopus]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,6 +37,7 @@ defmodule LifehopeAttendance.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:faker_elixir_octopus, "~> 1.0.0",  only: [:dev, :test]},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:basic_auth, "~> 2.0.0"}

@@ -4,4 +4,4 @@ import Html exposing (..)
 
 
 main =
-    text "elm"
+    text " " --coming _soon_
